@@ -17,6 +17,7 @@ public class NaveView implements Observador {
 	private JLabel nave;
 	private NaveModel naveModel;
 	private JSpinner ctrVelocidad;
+	
 	/**
 	 * Create the application.
 	 * @throws MalformedURLException 
@@ -63,11 +64,26 @@ public class NaveView implements Observador {
 		this.ventana.setVisible(visible);
 	}
 	
+	private void setIcon(ImageIcon icon) {
+		this.nave.setIcon(icon);
+	}
+	
 	//metodos
-	public void naveArriba(){this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif")));}
-	public void naveAbajo(){this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveDown.gif")));	}
-	public void naveDerecha(){	this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveRight.gif")));}
-	public void naveIzquierda(){this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveLeft.gif")));	}
+	public void naveArriba(){
+		setIcon(Recursos.IMG_NAVE_ARRIBA);
+	}
+	
+	public void naveAbajo() {
+		setIcon(Recursos.IMG_NAVE_ABAJO);
+	}
+	
+	public void naveDerecha() {
+		setIcon(Recursos.IMG_NAVE_DERECHA);
+	}
+	
+	public void naveIzquierda() {
+		setIcon(Recursos.IMG_NAVE_IZQUIERDA);
+	}
 
 	//metodos de interfaces
 	public void actualizar() {
