@@ -106,8 +106,7 @@ public class NaveView implements Observador {
 		setIcon(Recursos.IMG_NAVE_IZQUIERDA);
 	}
 	
-	private void actualizarOrientacion() {
-		Orientacion orientacion = naveModel.getOrientacion();
+	private void actualizarOrientacion(Orientacion orientacion) {
 		switch(orientacion) {
 		case Arriba: naveArriba(); break;
 		case Abajo: naveAbajo(); break;
@@ -129,6 +128,6 @@ public class NaveView implements Observador {
 	//metodos de interfaces
 	public void actualizar() {
 		actualizarPosicionNave(naveModel.getXVentana(), naveModel.getYVentana());
-		actualizarOrientacion();
+		actualizarOrientacion(naveModel.getOrientacion());
 	}
 }
