@@ -48,24 +48,17 @@ public class NaveView implements Observador {
 		lblVelocidad.setBounds(186, 14, 169, 15);
 		ventana.getContentPane().add(lblVelocidad);
 		
-		this.setNave(new JLabel(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif"))));
-		this.getNave().setBounds(33, 29, this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
-		ventana.getContentPane().add(this.getNave());
+		nave = new JLabel(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif")));
+		nave.setBounds(33, 29, this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
+		ventana.getContentPane().add(nave);
 	}
 	
-	//getter and setters 
-	public JLabel getNave(){
-		return this.nave ;
-	} 
-	private void setNave(JLabel nave){
-		this.nave=nave;
-	}
 	public void setVisible(boolean visible){
-		this.ventana.setVisible(visible);
+		ventana.setVisible(visible);
 	}
 	
 	private void setIcon(ImageIcon icon) {
-		this.nave.setIcon(icon);
+		nave.setIcon(icon);
 	}
 	
 	//metodos
@@ -87,8 +80,8 @@ public class NaveView implements Observador {
 
 	//metodos de interfaces
 	public void actualizar() {
-		this.getNave().setBounds(this.naveModel.getXVentana(),
-				this.naveModel.getYVentana(),this.naveModel.getWidthNave(),
-				this.naveModel.getHeightNave());
+		nave.setBounds(naveModel.getXVentana(),
+				naveModel.getYVentana(), naveModel.getWidthNave(),
+				naveModel.getHeightNave());
 	}
 }
