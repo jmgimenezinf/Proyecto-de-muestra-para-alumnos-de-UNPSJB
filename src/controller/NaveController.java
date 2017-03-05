@@ -48,10 +48,14 @@ public class NaveController implements KeyListener {
 	
 	private void moverNave(int key) {
 		switch(key) {
-		case KeyEvent.VK_DOWN: unaNaveModel.abajo(); break;
-		case KeyEvent.VK_UP: unaNaveModel.arriba(); break;
-		case KeyEvent.VK_RIGHT: unaNaveModel.derecha(); break;
-		case KeyEvent.VK_LEFT: unaNaveModel.izquierda(); break;
+		case KeyEvent.VK_DOWN: unaNaveModel.abajo(); 
+		unaNaveView.naveAbajo();break;
+		case KeyEvent.VK_UP: unaNaveModel.arriba(); 
+		unaNaveView.naveArriba();break;
+		case KeyEvent.VK_RIGHT: unaNaveModel.derecha();
+		unaNaveView.naveDerecha();break;
+		case KeyEvent.VK_LEFT: unaNaveModel.izquierda();
+		unaNaveView.naveIzquierda();break;
 		}
 	}
 	
@@ -84,9 +88,6 @@ public class NaveController implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if( e.getKeyCode() == KeyEvent.VK_A) {
-			this.getUnaNaveModel().pilotoAutomatico();
-		}
 	}
 
 

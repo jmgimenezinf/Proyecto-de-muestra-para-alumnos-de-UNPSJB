@@ -42,7 +42,7 @@ public class NaveView implements Observador {
 		ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.getContentPane().setLayout(null);
-		this.setNave(new JLabel(new ImageIcon(NaveView.class.getResource("/images/nave.gif"))));
+		this.setNave(new JLabel(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif"))));
 		this.getNave().setBounds(33, 29, this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
 
 		ventana.getContentPane().add(this.getNave());
@@ -57,6 +57,15 @@ public class NaveView implements Observador {
 		this.nave=nave;
 	}
 	@Override
+	
+	//metodos
+	public void naveArriba(){
+		this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif")));
+	}
+	public void naveAbajo(){	}
+	public void naveDerecha(){	}
+	public void naveIzquierda(){	}
+	//metodos de interfaces
 	public void actualizar() {
 		this.getNave().setBounds(this.naveModel.getXVentana(),
 				this.naveModel.getYVentana(),this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
