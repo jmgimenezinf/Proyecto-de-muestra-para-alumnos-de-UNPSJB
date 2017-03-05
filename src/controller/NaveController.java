@@ -32,12 +32,11 @@ public class NaveController implements KeyListener {
 	
 	
 	public void initialize() throws MalformedURLException{
-		this.setUnaNaveModel(new NaveModel());
-		this.setUnaNaveView(new NaveView(this.getUnaNaveModel()));
-		this.getUnaNaveModel().agregar(this.getUnaNaveView());
+		unaNaveModel = new NaveModel();
+		unaNaveView = new NaveView(unaNaveModel);
+        unaNaveModel.agregar(unaNaveView);
 		unaNaveView.setVisible(true);
 		unaNaveView.addKeyListener(this);
-		
 	}
 	
 	private boolean validKey(int key) {
@@ -68,21 +67,6 @@ public class NaveController implements KeyListener {
 			moverNave(key);
 		}
 	}
-
-	private void setUnaNaveView(NaveView naveView){
-		this.unaNaveView = naveView;
-	}	
-	private NaveView getUnaNaveView(){
-		return this.unaNaveView;
-	}
-	
-	private void setUnaNaveModel(NaveModel naveModel){
-		this.unaNaveModel = naveModel;
-	}	
-	private NaveModel getUnaNaveModel(){
-		return this.unaNaveModel;
-	}
-
 
 	//Metodos de interfaces
 	@Override
