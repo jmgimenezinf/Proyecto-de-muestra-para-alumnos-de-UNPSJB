@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class NaveModel implements Sujeto {
 	private int posXVentana; //posicion X de la nave dentro de la ventana
 	private int posYVentana;//posicion Y de la nave dentro de la ventana
+	private Orientacion orientacion = Orientacion.Arriba;
 	private final int widthNave;
 	private final int heightNave;
 	private int velocidad;
@@ -24,21 +25,29 @@ public class NaveModel implements Sujeto {
 	
 	public void arriba(){
 		this.setYVentana(this.getYVentana() - this.velocidad);
+		this.orientacion = Orientacion.Arriba;
 		this.notificar();
 	}
 	
 	public void abajo(){
 		this.setYVentana(this.getYVentana() + this.velocidad);
+		this.orientacion = Orientacion.Abajo;
 		this.notificar();
 		
 	}
 	public void izquierda(){
 		this.setXVentana(this.getXVentana() - this.velocidad);
+		this.orientacion = Orientacion.Izquierda;
 		this.notificar();
 	}
 	public void derecha(){
 		this.setXVentana(this.getXVentana() + this.velocidad);
+		this.orientacion = Orientacion.Derecha;
 		this.notificar();
+	}
+
+	public Orientacion getOrientacion() {
+		return this.orientacion;
 	}
 	
 	public void pilotoAutomatico(){
