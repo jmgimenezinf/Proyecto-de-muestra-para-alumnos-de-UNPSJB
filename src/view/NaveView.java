@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.NaveModel;
 import model.Observador;
+import model.Orientacion;
 
 import java.awt.Color;
 import javax.swing.JSpinner;
@@ -27,6 +28,7 @@ public class NaveView implements Observador {
 	 */
 	public NaveView(NaveModel naveModel) throws MalformedURLException {
 		this.naveModel = naveModel;
+		naveModel.agregar(this);
 		initialize();
 	}
 	
@@ -88,20 +90,30 @@ public class NaveView implements Observador {
 	}
 	
 	//metodos
-	public void naveArriba(){
+	private void naveArriba(){
 		setIcon(Recursos.IMG_NAVE_ARRIBA);
 	}
 	
-	public void naveAbajo() {
+	private void naveAbajo() {
 		setIcon(Recursos.IMG_NAVE_ABAJO);
 	}
 	
-	public void naveDerecha() {
+	private void naveDerecha() {
 		setIcon(Recursos.IMG_NAVE_DERECHA);
 	}
 	
-	public void naveIzquierda() {
+	private void naveIzquierda() {
 		setIcon(Recursos.IMG_NAVE_IZQUIERDA);
+	}
+	
+	private void actualizarOrientacion(Orientacion orientacion) {
+		switch(orientacion) {
+		case Arriba: naveArriba(); break;
+		case Abajo: naveAbajo(); break;
+		case Derecha: naveDerecha(); break;
+		case Izquierda: naveIzquierda(); break;
+		default: throw new IndexOutOfBoundsException();
+		}
 	}
 	
 	private void actualizarPosicionNave(int posX, int posY) {
@@ -116,5 +128,6 @@ public class NaveView implements Observador {
 	//metodos de interfaces
 	public void actualizar() {
 		actualizarPosicionNave(naveModel.getXVentana(), naveModel.getYVentana());
+		actualizarOrientacion(naveModel.getOrientacion());
 	}
 }
