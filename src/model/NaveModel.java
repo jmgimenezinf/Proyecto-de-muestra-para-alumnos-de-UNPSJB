@@ -3,19 +3,19 @@ package model;
 import java.util.ArrayList;
 
 public class NaveModel implements Sujeto {
-
 	private int posXVentana; //posicion X de la nave dentro de la ventana
 	private int posYVentana;//posicion Y de la nave dentro de la ventana
-	private int widthNave;
-	private int heightNave;
+	private final int widthNave;
+	private final int heightNave;
 	private int velocidad;
 	private ArrayList<Observador> observadores = new ArrayList<Observador>();
+	
 	//constructor
 	public NaveModel(){
+		widthNave = 184;
+		heightNave = 250;
 		this.setXVentana(100);
 		this.setYVentana(100);
-		this.setHeightNave(250);
-		this.setWidthNave(184);
 		this.setVelocidad(5);
 	}
 	
@@ -23,21 +23,21 @@ public class NaveModel implements Sujeto {
 	// metodos 
 	
 	public void arriba(){
-		this.setYVentana(this.getYVentana()- this.velocidad);
+		this.setYVentana(this.getYVentana() - this.velocidad);
 		this.notificar();
 	}
 	
 	public void abajo(){
-		this.setYVentana(this.getYVentana()+ this.velocidad);
+		this.setYVentana(this.getYVentana() + this.velocidad);
 		this.notificar();
 		
 	}
 	public void izquierda(){
-		this.setXVentana(this.getXVentana()- this.velocidad);
+		this.setXVentana(this.getXVentana() - this.velocidad);
 		this.notificar();
 	}
 	public void derecha(){
-		this.setXVentana(this.getXVentana()+ this.velocidad);
+		this.setXVentana(this.getXVentana() + this.velocidad);
 		this.notificar();
 	}
 	
@@ -61,22 +61,14 @@ public class NaveModel implements Sujeto {
 	
 	// getters and setters
 	public void setXVentana(int posXVentana){
-		this.posXVentana= posXVentana;
+		this.posXVentana = posXVentana;
 	}
 	public void setVelocidad(int velocidad){
-		this.velocidad= velocidad;
+		this.velocidad = velocidad;
 	}
 	public void setYVentana(int posYVentana){
-		this.posYVentana= posYVentana;
+		this.posYVentana = posYVentana;
 	}
-	
-	public void setWidthNave(int widthNave){
-		this.widthNave= widthNave;
-	}
-	public void setHeightNave(int heigthNave){
-		this.heightNave=heigthNave;
-	}
-	
 	
 	public int getYVentana(){
 		return this.posYVentana;		
@@ -86,10 +78,10 @@ public class NaveModel implements Sujeto {
 		return this.posXVentana;
 	}
 	public int getWidthNave(){
-		return this.widthNave;
+		return widthNave;
 	}
 	public int getHeightNave(){
-		return this.heightNave;
+		return heightNave;
 	}
 	public int getVelocidad(){
 		return this.velocidad;
@@ -105,16 +97,12 @@ public class NaveModel implements Sujeto {
 	public void agregar(Observador observador) {
 		// TODO Auto-generated method stub
 		this.getObservadores().add(observador);
-		
 	}
-
-
 
 	@Override
 	public void quitar(Observador observador) {
 		// TODO Auto-generated method stub
 		this.getObservadores().remove(observador);
-		
 	}
 
 
@@ -126,5 +114,4 @@ public class NaveModel implements Sujeto {
 		}
 		
 	}
-	
 }

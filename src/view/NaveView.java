@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import model.NaveModel;
 import model.Observador;
+
 import java.awt.Color;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -15,7 +16,6 @@ import java.awt.event.KeyListener;
 
 
 public class NaveView implements Observador {
-
 	public JFrame ventana;
 	private JLabel nave;
 	private NaveModel naveModel;
@@ -25,8 +25,8 @@ public class NaveView implements Observador {
 	 * Create the application.
 	 * @throws MalformedURLException 
 	 */
-	public NaveView( NaveModel naveModel ) throws MalformedURLException {
-		this.naveModel= naveModel;
+	public NaveView(NaveModel naveModel) throws MalformedURLException {
+		this.naveModel = naveModel;
 		initialize();
 	}
 	
@@ -104,6 +104,10 @@ public class NaveView implements Observador {
 		setIcon(Recursos.IMG_NAVE_IZQUIERDA);
 	}
 	
+	private void actualizarPosicionNave(int posX, int posY) {
+		nave.setBounds(posX, posY, naveModel.getWidthNave(), naveModel.getHeightNave());
+	}
+	
 	public void addKeyListener(KeyListener keyListener) {
 		ventana.setFocusable(true);
 		ventana.addKeyListener(keyListener);
@@ -111,8 +115,6 @@ public class NaveView implements Observador {
 
 	//metodos de interfaces
 	public void actualizar() {
-		nave.setBounds(naveModel.getXVentana(),
-				naveModel.getYVentana(), naveModel.getWidthNave(),
-				naveModel.getHeightNave());
+		actualizarPosicionNave(naveModel.getXVentana(), naveModel.getYVentana());
 	}
 }
