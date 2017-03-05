@@ -72,9 +72,7 @@ public class NaveController implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if( e.getKeyCode() == e.VK_A) {
-			this.getUnaNaveModel().pilotoAutomatico();
-		}
+	
 	}
 
 

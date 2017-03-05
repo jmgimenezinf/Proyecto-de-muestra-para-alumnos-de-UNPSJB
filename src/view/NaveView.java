@@ -59,7 +59,7 @@ public class NaveView implements Observador {
 	@Override
 	public void actualizar() {
 		this.getNave().setBounds(this.naveModel.getXVentana(),
-				this.naveModel.getYVentana(),this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
+		this.naveModel.getYVentana(),this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
 		
 	}
 	

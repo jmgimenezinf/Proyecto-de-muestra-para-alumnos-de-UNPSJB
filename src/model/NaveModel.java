@@ -11,8 +11,8 @@ public class NaveModel implements Sujeto {
 	private ArrayList<Observador> observadores = new ArrayList<Observador>();
 	//constructor
 	public NaveModel(){
-		this.setXVentana(100);
-		this.setYVentana(100);
+		this.setXVentana(33);
+		this.setYVentana(29);
 		this.setHeightNave(250);
 		this.setWidthNave(184);
 	}
