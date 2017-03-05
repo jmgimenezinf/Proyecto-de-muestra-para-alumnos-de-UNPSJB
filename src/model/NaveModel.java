@@ -8,6 +8,7 @@ public class NaveModel implements Sujeto {
 	private int posYVentana;//posicion Y de la nave dentro de la ventana
 	private int widthNave;
 	private int heightNave;
+	private int velocidad;
 	private ArrayList<Observador> observadores = new ArrayList<Observador>();
 	//constructor
 	public NaveModel(){
@@ -15,27 +16,28 @@ public class NaveModel implements Sujeto {
 		this.setYVentana(100);
 		this.setHeightNave(250);
 		this.setWidthNave(184);
+		this.setVelocidad(5);
 	}
 	
 	
 	// metodos 
 	
 	public void arriba(){
-		this.setYVentana(this.getYVentana()-5);
+		this.setYVentana(this.getYVentana()- this.velocidad);
 		this.notificar();
 	}
 	
 	public void abajo(){
-		this.setYVentana(this.getYVentana()+5);
+		this.setYVentana(this.getYVentana()+ this.velocidad);
 		this.notificar();
 		
 	}
 	public void izquierda(){
-		this.setXVentana(this.getXVentana()-5);
+		this.setXVentana(this.getXVentana()- this.velocidad);
 		this.notificar();
 	}
 	public void derecha(){
-		this.setXVentana(this.getXVentana()+5);
+		this.setXVentana(this.getXVentana()+ this.velocidad);
 		this.notificar();
 	}
 	
@@ -61,6 +63,9 @@ public class NaveModel implements Sujeto {
 	public void setXVentana(int posXVentana){
 		this.posXVentana= posXVentana;
 	}
+	public void setVelocidad(int velocidad){
+		this.velocidad= velocidad;
+	}
 	public void setYVentana(int posYVentana){
 		this.posYVentana= posYVentana;
 	}
@@ -85,6 +90,9 @@ public class NaveModel implements Sujeto {
 	}
 	public int getHeightNave(){
 		return this.heightNave;
+	}
+	public int getVelocidad(){
+		return this.velocidad;
 	}
 	private ArrayList<Observador> getObservadores(){
 		return this.observadores;
