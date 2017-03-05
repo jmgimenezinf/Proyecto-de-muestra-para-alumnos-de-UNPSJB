@@ -35,8 +35,8 @@ public class NaveController implements KeyListener {
 		this.setUnaNaveModel(new NaveModel());
 		this.setUnaNaveView(new NaveView(this.getUnaNaveModel()));
 		this.getUnaNaveModel().agregar(this.getUnaNaveView());
-		getUnaNaveView().setVisible(true);
-		getUnaNaveView().ventana.addKeyListener(this);
+		unaNaveView.setVisible(true);
+		unaNaveView.addKeyListener(this);
 		
 	}
 	
