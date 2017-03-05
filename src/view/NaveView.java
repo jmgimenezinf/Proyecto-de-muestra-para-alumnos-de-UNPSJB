@@ -59,12 +59,10 @@ public class NaveView implements Observador {
 	@Override
 	
 	//metodos
-	public void naveArriba(){
-		this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif")));
-	}
-	public void naveAbajo(){	}
-	public void naveDerecha(){	}
-	public void naveIzquierda(){	}
+	public void naveArriba(){this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveUp.gif")));}
+	public void naveAbajo(){this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveDown.gif")));	}
+	public void naveDerecha(){	this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveRight.gif")));}
+	public void naveIzquierda(){this.getNave().setIcon(new ImageIcon(NaveView.class.getResource("/images/naveLeft.gif")));	}
 	//metodos de interfaces
 	public void actualizar() {
 		this.getNave().setBounds(this.naveModel.getXVentana(),
