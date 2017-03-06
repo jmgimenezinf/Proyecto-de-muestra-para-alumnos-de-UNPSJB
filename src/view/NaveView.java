@@ -1,26 +1,27 @@
 package view;
 
 import java.net.MalformedURLException;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.event.ChangeListener;
+
 import model.NaveModel;
 import model.Observador;
 import model.Orientacion;
+import model.Posicion;
+import model.Size;
 
 import java.awt.Color;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
 
 import java.awt.Font;
 import java.awt.event.KeyListener;
 
 
 public class NaveView implements Observador {
-	public JFrame ventana;
+	private JFrame ventana;
+	private ControlVelocidad control;
 	private JLabel nave;
 	private NaveModel naveModel;
-	private JSpinner ctrVelocidad;
 	
 	/**
 	 * Create the application.
@@ -40,19 +41,11 @@ public class NaveView implements Observador {
 		ventana.getContentPane().setLayout(null);
 	}
 	
-	private int getValueSpinner() {
-		SpinnerNumberModel model = (SpinnerNumberModel) ctrVelocidad.getModel();
-		return model.getNumber().intValue();
-	}
-	
-	private void addSpinner() {
-		ctrVelocidad = new JSpinner();
-		ctrVelocidad.setBounds(10, 10, 153, 32);
-		ctrVelocidad.setValue(5);
-		
-		ctrVelocidad.addChangeListener(e -> naveModel.setVelocidad(getValueSpinner()));
-		
-		ventana.getContentPane().add(ctrVelocidad);
+	private void addControlVelocidad() {
+		Size size = new Size(153, 32);
+		Posicion pos = new Posicion(10, 10);
+		control = new ControlVelocidad(pos, size, 5);
+		control.setContainer(ventana.getContentPane());
 	}
 	
 	private void addLabel() {
@@ -65,7 +58,8 @@ public class NaveView implements Observador {
 	
 	private void addNave() {
 		nave = new JLabel(Recursos.IMG_NAVE_ARRIBA);
-		nave.setBounds(33, 29, this.naveModel.getWidthNave(),this.naveModel.getHeightNave());
+		Size size = naveModel.getSize();
+		nave.setBounds(33, 29, size.getWidth(),size.getHeight());
 		ventana.getContentPane().add(nave);
 		nave.requestFocus();
 	}
@@ -76,58 +70,50 @@ public class NaveView implements Observador {
 	 */
 	private void initialize() throws MalformedURLException {
 		crearVentana();
-		addSpinner();
+		addControlVelocidad();
 		addLabel();
 		addNave();
-	}
-	
-	public void setVisible(boolean visible){
-		ventana.setVisible(visible);
-	}
-	
-	private void setIcon(ImageIcon icon) {
-		nave.setIcon(icon);
-	}
-	
-	//metodos
-	private void naveArriba(){
-		setIcon(Recursos.IMG_NAVE_ARRIBA);
-	}
-	
-	private void naveAbajo() {
-		setIcon(Recursos.IMG_NAVE_ABAJO);
-	}
-	
-	private void naveDerecha() {
-		setIcon(Recursos.IMG_NAVE_DERECHA);
-	}
-	
-	private void naveIzquierda() {
-		setIcon(Recursos.IMG_NAVE_IZQUIERDA);
+		ventana.setVisible(true);
 	}
 	
 	private void actualizarOrientacion(Orientacion orientacion) {
 		switch(orientacion) {
-		case Arriba: naveArriba(); break;
-		case Abajo: naveAbajo(); break;
-		case Derecha: naveDerecha(); break;
-		case Izquierda: naveIzquierda(); break;
+		case Arriba: nave.setIcon(Recursos.IMG_NAVE_ARRIBA); break;
+		case Abajo: nave.setIcon(Recursos.IMG_NAVE_ABAJO); break;
+		case Derecha: nave.setIcon(Recursos.IMG_NAVE_DERECHA); break;
+		case Izquierda: nave.setIcon(Recursos.IMG_NAVE_IZQUIERDA); break;
 		default: throw new IndexOutOfBoundsException();
 		}
 	}
 	
-	private void actualizarPosicionNave(int posX, int posY) {
-		nave.setBounds(posX, posY, naveModel.getWidthNave(), naveModel.getHeightNave());
+	private void actualizarPosicionNave(Posicion posicion) {
+		nave.setBounds(
+			posicion.getX(),
+			posicion.getY(),
+			naveModel.getSize().getWidth(),
+			naveModel.getSize().getHeight()
+		);
 	}
 	
 	public void addKeyListener(KeyListener keyListener) {
 		ventana.setFocusable(true);
 		ventana.addKeyListener(keyListener);
 	}
+	
+	public void addChangeListener(ChangeListener listener) {
+		control.addChangeListener(listener);
+	}
+	
+	public int getValueControlVelocidad() {
+		return control.getValue();
+	}
+	
+	public void focusAVentana() {
+		ventana.requestFocus();
+	}
 
-	//metodos de interfaces
 	public void actualizar() {
-		actualizarPosicionNave(naveModel.getXVentana(), naveModel.getYVentana());
+		actualizarPosicionNave(naveModel.getPosicion());
 		actualizarOrientacion(naveModel.getOrientacion());
 	}
 }
