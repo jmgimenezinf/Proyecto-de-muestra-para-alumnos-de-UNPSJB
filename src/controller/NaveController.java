@@ -7,6 +7,7 @@ import model.NaveModel;
 import view.NaveView;
 
 public class NaveController {
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

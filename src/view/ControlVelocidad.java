@@ -12,12 +12,12 @@ import model.Size;
 public class ControlVelocidad {
 	private final JSpinner spinner = new JSpinner();
 	
-	public ControlVelocidad(Posicion posicion, Size tamaño, int value) {
+	public ControlVelocidad(Posicion posicion, Size tamanio, int value) {
 		spinner.setBounds(
 			posicion.getX(),
 			posicion.getY(),
-			tamaño.getWidth(),
-			tamaño.getHeight()
+			tamanio.getWidth(),
+			tamanio.getHeight()
 		);
 		
 		spinner.setValue(value);
