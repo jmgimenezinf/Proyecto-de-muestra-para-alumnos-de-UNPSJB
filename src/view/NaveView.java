@@ -12,7 +12,7 @@ import model.Posicion;
 import model.Size;
 
 import java.awt.Color;
-
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyListener;
 
@@ -35,6 +35,7 @@ public class NaveView implements Observador {
 	
 	private void crearVentana() {
 		ventana = new JFrame();
+		ventana.setMinimumSize(new Dimension(300,300));
 		ventana.getContentPane().setBackground(Color.BLACK); // cambio el color del fondo 
 		ventana.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
